@@ -1,0 +1,17 @@
+{
+  "author": "Felix Geisendörfer <felix@debuggable.com> (http://debuggable.com/)",
+  "name": "cluster-isolatable",
+  "description": "Allows to isolate workers so they only handle one request at a time. Useful for file uploads.",
+  "version": "0.0.0",
+  "homepage": "http://debuggable.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/felixge/node-cluster-isolatable.git"
+  },
+  "main": "./index",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
