@@ -12,6 +12,7 @@ var options = {
 test('isolateWorker with custom timeout', function(done) {
   var server = http.createServer(function(req, res) {
     var timeout = parseInt(req.url.substr(1), 10);
+    console.error('isolateWorker', timeout);
     master.isolateWorker(timeout);
 
     res.writeHead(200, {'X-Pid': process.pid});
@@ -36,14 +37,12 @@ test('isolateWorker with custom timeout', function(done) {
 
     expectedTimeouts.push(timeout);
     options.path = '/' + timeout;
-
-    http.get(options, function(res) {
-      var pid = res.headers['x-pid'];
-      process.kill(pid, 'SIGQUIT');
-    });
+    http.get(options, function(res) {});
   });
 
   master.on('worker timeout', function(worker, timeout) {
+    console.error('workerTimeout', timeout);
+
     var expected = expectedTimeouts.shift();
     assert.equal(timeout, expected);
 
