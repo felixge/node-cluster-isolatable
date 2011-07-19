@@ -2,14 +2,15 @@ module.exports = function isolatable() {
   function isolatable(master) {
     if (master.isWorker) {
       master.isolateWorker = function(timeout) {
-        try {
-          this.worker.timeout = timeout || this.worker.timeout;
-          this.server.close();
-          this.call('isolateWorker');
-        } catch (e) {
-          // server.close() throws an exception when called twice on the same
-          // server, safe to ignore. Two requests got into one worker.
+        if (!this.server.fd) {
+          // Server already closed, this will happen if two requests make it
+          // into the same isolated worker.
+          return;
         }
+
+        this.worker.timeout = timeout || this.worker.timeout;
+        this.server.close();
+        this.call('isolateWorker');
       };
 
       return;

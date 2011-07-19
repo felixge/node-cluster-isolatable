@@ -14,7 +14,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "cluster": "0.6.4",
-    "fast-or-slow": "0.0.0"
+    "cluster": "https://github.com/felixge/cluster/tarball/ebd4626a61bb1074939b47f26a28a07c6dc33601"
   }
 }
