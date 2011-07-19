@@ -13,5 +13,8 @@
     "node": "*"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "cluster": "0.6.4",
+    "fast-or-slow": "0.0.0"
+  }
 }

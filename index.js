@@ -1,8 +1,9 @@
 module.exports = function isolatable() {
   function isolatable(master) {
     if (master.isWorker) {
-      master.isolateWorker = function() {
+      master.isolateWorker = function(timeout) {
         try {
+          this.worker.timeout = timeout || this.worker.timeout;
           this.server.close();
           this.call('isolateWorker');
         } catch (e) {
@@ -19,10 +20,10 @@ module.exports = function isolatable() {
         return;
       }
 
-      master.spawn(1);
       worker.proc.kill('SIGQUIT');
       master.removeWorker(worker.id);
       master.emit('worker removed', worker);
+      master.spawnWorker(worker.id);
     };
   };
 
