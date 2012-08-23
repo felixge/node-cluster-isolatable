@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/felixge/node-cluster-isolatable.png)](http://travis-ci.org/felixge/node-cluster-isolatable)
 # cluster-isolatable
 
 Plugin for [cluster][] that allows to isolate one connection per worker.
